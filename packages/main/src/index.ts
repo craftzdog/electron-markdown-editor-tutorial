@@ -1,6 +1,6 @@
-import {app, BrowserWindow} from 'electron';
-import {join} from 'path';
-import {URL} from 'url';
+import { app, BrowserWindow } from 'electron';
+import { join } from 'path';
+import { URL } from 'url';
 
 
 const isSingleInstance = app.requestSingleInstanceLock();
@@ -23,7 +23,7 @@ const env = import.meta.env;
 if (env.MODE === 'development') {
   app.whenReady()
     .then(() => import('electron-devtools-installer'))
-    .then(({default: installExtension, VUEJS3_DEVTOOLS}) => installExtension(VUEJS3_DEVTOOLS, {
+    .then(({ default: installExtension, VUEJS3_DEVTOOLS }) => installExtension(VUEJS3_DEVTOOLS, {
       loadExtensionOptions: {
         allowFileAccess: true,
       },
@@ -50,7 +50,9 @@ const createWindow = async () => {
    * @see https://github.com/electron/electron/issues/25012
    */
   mainWindow.on('ready-to-show', () => {
-    mainWindow?.show();
+    if (!mainWindow?.isVisible()) {
+      mainWindow?.show();
+    }
 
     if (env.MODE === 'development') {
       mainWindow?.webContents.openDevTools();
@@ -96,7 +98,7 @@ app.whenReady()
 if (env.PROD) {
   app.whenReady()
     .then(() => import('electron-updater'))
-    .then(({autoUpdater}) => autoUpdater.checkForUpdatesAndNotify())
+    .then(({ autoUpdater }) => autoUpdater.checkForUpdatesAndNotify())
     .catch((e) => console.error('Failed check updates:', e));
 }
 

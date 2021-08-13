@@ -7,7 +7,35 @@ import { indentOnInput } from '@codemirror/language'
 import { bracketMatching } from '@codemirror/matchbrackets'
 import { lineNumbers, highlightActiveLineGutter } from '@codemirror/gutter'
 import { defaultHighlightStyle, HighlightStyle, tags } from '@codemirror/highlight'
-import { javascript } from '@codemirror/lang-javascript'
+import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
+import { languages } from '@codemirror/language-data'
+import { oneDark } from '@codemirror/theme-one-dark'
+
+export const transparentTheme = EditorView.theme({
+  '&': {
+    backgroundColor: 'transparent !important',
+    height: '100%'
+  }
+})
+
+const syntaxHighlighting = HighlightStyle.define([
+  {
+    tag: tags.heading1,
+    fontSize: '1.6em',
+    fontWeight: 'bold'
+  },
+  {
+    tag: tags.heading2,
+    fontSize: '1.4em',
+    fontWeight: 'bold'
+  },
+  {
+    tag: tags.heading3,
+    fontSize: '1.2em',
+    fontWeight: 'bold'
+  }
+])
+
 import type React from 'react'
 
 interface Props {
@@ -36,7 +64,14 @@ const useCodeMirror = <T extends Element>(
         bracketMatching(),
         defaultHighlightStyle.fallback,
         highlightActiveLine(),
-        javascript(),
+        markdown({
+          base: markdownLanguage,
+          codeLanguages: languages,
+          addKeymap: true
+        }),
+        oneDark,
+        transparentTheme,
+        syntaxHighlighting,
         EditorView.lineWrapping,
         EditorView.updateListener.of(update => {
           if (update.changes) {

@@ -1,7 +1,8 @@
 .app {
+  background-color: transparent;
   text-align: center;
 }
 
 button {
-  font-size: calc(10px + 2vim);
+  font-size: calc(10px + 2vmin);
 }

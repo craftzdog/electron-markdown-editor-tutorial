@@ -1,116 +1,28 @@
-# Vite Electron Builder Boilerplate v2
+# Markdown Editor Tutorial
 
-[![GitHub issues by-label](https://img.shields.io/github/issues/cawa-93/vite-electron-builder/help%20wanted?label=issues%20need%20help&logo=github)](https://github.com/cawa-93/vite-electron-builder/issues?q=label%3A%22help+wanted%22+is%3Aopen+is%3Aissue)
-[![Minimal node version](https://img.shields.io/static/v1?label=node&message=%3E=14.16&logo=node.js&color)](https://nodejs.org/about/releases/)
-[![Minimal npm version](https://img.shields.io/static/v1?label=npm&message=%3E=7.7&logo=npm&color)](https://github.com/npm/cli/releases)
+![screenshot](./doc/screenshot.png)
 
-> Vite+Electron = 🔥
+A tutorial for building a beautiful Markdown editor
 
-This is a secure template for electron applications. Written following the latest safety requirements, recommendations and best practices.
+## Stack
 
-Under the hood is used [Vite] — super fast, nextgen bundler, and [electron-builder] for compilation.
-
-
-___
-### Support
-- This template maintained by [Alex Kozack][cawa-93-github]. You can [💖 sponsor him][cawa-93-sponsor] for continued development of this template.
-
-- Found a problem? Pull requests are welcome.
-
-- If you have ideas, questions or suggestions - **Welcome to [discussions](https://github.com/cawa-93/vite-electron-builder/discussions)**. 😊
-___
-
-
-
+- [Electron](https://www.electronjs.org/) - A framework for building cross-platform desktop apps using HTML, JS, and CSS
+- [Vite](https://vitejs.dev/) - A fast build tool
+- React - A library for building UI
+- TypeScrip - A typed JavaScript
+- [CodeMirror 6](https://codemirror.net/6/) - An extensible code editor for the web
+- [Remark](https://remark.js.org/) - An extensible Markdown processor
 
 ## Get started
 
-Follow these steps to get started with this template:
+```sh
+npm i
+npm run watch
+```
 
-1. Click the **[Use this template](https://github.com/cawa-93/vite-electron-builder/generate)** button (you must be logged in) or just clone this repo.
-2. If you want use another package manager don't forget edit [`.github/workflows`](/.github/workflows) -- it uses `npm` by default.
+## Project Structure
 
-That's all you need. 😉
-
-**Note**: This template uses npm v7 feature — [**Installing Peer Dependencies Automatically**](https://github.com/npm/rfcs/blob/latest/implemented/0025-install-peer-deps.md). If you are using a different package manager, you may need to install some peerDependencies manually.
-
-
-
-
-## Features
-
-### Electron [![Electron version](https://img.shields.io/github/package-json/dependency-version/cawa-93/vite-electron-builder/dev/electron?label=%20)][electron]
-- Template use the latest electron version with all the latest security patches.
-- The architecture of the application is built according to the security [guids](https://www.electronjs.org/docs/tutorial/security) and best practices.
-- The latest version of the [electron-builder] is used to compile the application.
-
-
-### Vite [![Vite version](https://img.shields.io/github/package-json/dependency-version/cawa-93/vite-electron-builder/dev/vite?label=%20)][vite]
-- [Vite] is used to bundle all source codes. This is an extremely fast packer that has a bunch of great features. You can learn more about how it is arranged in [this](https://youtu.be/xXrhg26VCSc) video.
-- Vite [supports](https://vitejs.dev/guide/env-and-mode.html) reading `.env` files. My template has a separate command to generate `.d.ts` file with type definition your environment variables.
-
-Vite provides you with many useful features, such as: `TypeScript`, `TSX/JSX`, `CSS/JSON Importing`, `CSS Modules`, `Web Assembly` and much more.
-
-[See all Vite features](https://vitejs.dev/guide/features.html).
-
-
-### TypeScript [![TypeScript version](https://img.shields.io/github/package-json/dependency-version/cawa-93/vite-electron-builder/dev/typescript?label=%20)][typescript] (optional)
-- The Latest TypeScript is used for all source code. 
-- **Vite** supports TypeScript out of the box. However, it does not support type checking.
-- Code formatting rules follow the latest TypeScript recommendations and best practices thanks to [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin).
-
-**[See this discussion](https://github.com/cawa-93/vite-electron-builder/discussions/339)** if you want completly remove TypeScript. 
-
-
-### Vue [![Vue version](https://img.shields.io/github/package-json/dependency-version/cawa-93/vite-electron-builder/vue?label=%20)][vue] (optional)
-- By default, web pages are built using [Vue]. However, you can easily change it. Or do not use additional frameworks at all. (See [React fork](https://github.com/soulsam480/vite-electron-react-starter))
-- Also, by default, the [vue-router] version [![Vue-router version](https://img.shields.io/github/package-json/dependency-version/cawa-93/vite-electron-builder/vue-router?label=%20)][vue-router] is used.
-- Code formatting rules follow the latest Vue recommendations and best practices thanks to [eslint-plugin-vue].
-- Installed [Vue.js devtools beta](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg) with Vue 3 support.
-
-See [examples of web pages for different frameworks](https://github.com/vitejs/vite/tree/main/packages/create-app).
-
-### Continuous Integration
-- The configured workflow for check the types for each push and PR.
-- The configured workflow for check the code style for each push and PR.
-- **Automatic tests** used [spectron]. Simple, automated test check:
-  - Does the main window created and visible?
-  - Is the main window not empty?
-  - Is dev tools closed?
-  
-
-### Continuous delivery
-- Each time you push changes to the `main` branch, [`release`](.github/workflows/release.yml) workflow starts, which creates release draft.
-  - The version is automatically set based on the current date in the format "yy.mm.dd".
-  - Notes are automatically generated and added to the release draft.
-  - Code signing supported. See [`compile` job in `release` workflow](.github/workflows/release.yml).
-- **Auto-update is supported**. After the release will be published, all client applications will download the new version and install updates silently.
-
-
-## Status
-
-This template was created to make my work easier. It may not be universal, but I try to keep it that way.
-
-I am actively involved in its development. But I do not guarantee that this template will be maintained in the future.
-
-
-**At the moment, there are the following problems:**
-
-- ⚠ Some files require refactoring.
-- ⚠ Typechecking `renderer` package in CI implemented by [![vue-tsc](https://img.shields.io/github/package-json/dependency-version/cawa-93/vite-electron-builder/dev/vue-tsc)][vue-tsc], which has a very early version. This is not a problem if you do not use Vue or TypeScript.
-- ⚠ Release notes are created automatically based on commit history. [`.github/actions/release-notes`](.github/actions/release-notes) is used for generation. It may not provide some scenarios. If you encounter a problem - write about it.
-- ⏳ I want to migrate all code base to ESM. But because Nodejs  ecosystem is unprepared I have not known whether this will give more benefits or more inconvenience.
-
-Some improvement or problems can be listed in [issues](https://github.com/cawa-93/vite-electron-builder/issues).
-
-**Pull requests are welcome**.
-
-## How it works
-The template required a minimum [dependencies](package.json). Only **Vite** is used for building, nothing more.
-
-### Project Structure
-
-The structure of this template is very similar to the structure of a monorepo.
+The structure of this project is very similar to the structure of a monorepo.
 
 The entire source code of the program is divided into three modules (packages) that are bundled each independently:
 - [`packages/main`](packages/main)
@@ -183,12 +95,6 @@ When running building, environment variables are loaded from the following files
 ```
 
 **Note:** only variables prefixed with `VITE_` are exposed to your code (e.g. `VITE_SOME_KEY=123`) and `SOME_KEY=123` will not.  you can access `VITE_SOME_KEY` using `import.meta.env.VITE_SOME_KEY`. This is because the `.env` files may be used by some users for server-side or build scripts and may contain sensitive information that should not be exposed in code shipped to browsers.
-
-
-
-## Contribution
-
-See [Contributing Guide](contributing.md).
 
 
 [vite]: https://github.com/vitejs/vite/

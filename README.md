@@ -6,7 +6,8 @@ A tutorial for building a beautiful Markdown editor
 
 ## Sponsor
 
-[![Inkdrop](./doc/inkdrop-logo.png)](https://www.inkdrop.app/)  
+[![Inkdrop](./doc/inkdrop-logo.png)](https://www.inkdrop.app/)
+
 A cross-platform Markdown note-taking app
 
 ## Stack
@@ -30,6 +31,7 @@ npm run watch
 The structure of this project is very similar to the structure of a monorepo.
 
 The entire source code of the program is divided into three modules (packages) that are bundled each independently:
+
 - [`packages/main`](packages/main)
 Electron [**main script**](https://www.electronjs.org/docs/tutorial/quick-start#create-the-main-script-file).
 - [`packages/preload`](packages/preload)
@@ -48,12 +50,15 @@ The build of web resources is performed in the [`scripts/build.js`](scripts/buil
 Next step is run  packaging and compilation a ready for distribution Electron app for macOS, Windows and Linux with "auto update" support out of the box. 
 
 To do this, using the [electron-builder]:
+
 - In npm script `compile`: This script is configured to compile the application as quickly as possible. It is not ready for distribution, is compiled only for the current platform and is used for debugging.
 - In GitHub Action: The application is compiled for any platform and ready-to-distribute files are automatically added to the draft GitHub release. 
 
 
 ### Using Node.js API in renderer
+
 According to [Electron's security guidelines](https://www.electronjs.org/docs/tutorial/security#2-do-not-enable-nodejs-integration-for-remote-content), Node.js integration is disabled for remote content. This means that **you cannot call any Node.js api in the `packages/renderer` directly**. To do this, you **must** describe the interface in the `packages/preload` where Node.js api is allowed:
+
 ```ts
 // packages/preload/src/index.ts
 import {readFile} from 'fs/promises'
@@ -76,9 +81,8 @@ const {readConfig} = useElectron()
 
 **Note**: Context isolation disabled for `test` environment. See [#693](https://github.com/electron-userland/spectron/issues/693#issuecomment-747872160).
 
-
-
 ### Modes and Environment Variables
+
 All environment variables set as part of the `import.meta`, so you can access them as follows: `import.meta.env`. 
 
 You can also build type definitions of your variables by running `scripts/buildEnvTypes.js`. This command will create `types/env.d.ts` file with describing all environment variables for all modes.
